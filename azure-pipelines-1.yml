@@ -1,0 +1,20 @@
+
+trigger:
+- master
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.6'
+  displayName: 'Use Python $(python.3.6)'
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Install dependencies'
+
+Settings
+-task: TwineAuthenticate@0
+  inputs:
+    artifactFeed: '<Azure Artifacts feed name>'
+    pythonUploadServiceConnection: '<twine servise connection from external organization>'
